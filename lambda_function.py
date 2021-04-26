@@ -137,8 +137,8 @@ def get_date_from_bucket(s3_obj, source):
 
 
 
-event = {
-  "is_incremental": True,
-  "refresh_from": False
-}
-res = main_function(event, [])
+# event = {
+#   "is_incremental": True,
+#   "refresh_from": False
+# }
+# res = main_function(event, [])
