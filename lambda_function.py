@@ -26,8 +26,9 @@ def main_function(event, context):
 def get_params(is_incremental, refresh_from, source):
     print('Getting parameters for start and end dates')
     if is_incremental:
-        # start_date = datetime.datetime.now().strftime('%Y-%m-%d')
         start_date = get_date_from_bucket(s3_obj, source)
+        #for normal functioning
+        # start_date = datetime.datetime.now().strftime('%Y-%m-%d')
         end_date = start_date
         print('start date: ', start_date)
         print('end_date: ', end_date)
@@ -38,6 +39,8 @@ def get_params(is_incremental, refresh_from, source):
         print('end date: ', end_date)
     else:
         start_date = '2021-03-01'
+        #for normal functioning
+        #start_date = '2021-01-01'
         # end_date = datetime.datetime.now().strftime('%Y-%m-%d')
         end_date = '2021-03-15'
         print('start date: ', start_date)
@@ -79,7 +82,7 @@ def format_data(data, source):
     interval = end_date - start_date
     interval = interval.days
     if interval == 0:
-        #when start date and end date is the same
+        #when start date and end date is the same - in case of incremental update
         interval = interval + 1
     current_date = start_date
     for i in range(0, interval):
